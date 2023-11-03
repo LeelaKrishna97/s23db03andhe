@@ -2,4 +2,18 @@ extends layout
 
 block content
   h1= title
+  p Leela Krishna
   p Welcome to #{title}
+  button(type="button",class="btn btn-info",onclick="goFaster()") Pressme
+  div(id="faster") <i>Increase the speed.</i>
+  br
+  a(href="chococlate") Link to search page.
+  script.
+    var mph=20;
+    var change=1;
+    function goFaster(){
+      mph=mph+change;
+      change=change+1;
+      var output=document.getElementById("faster");
+      output.innerHTML="MPH "+mph+"with change "+change;
+    }

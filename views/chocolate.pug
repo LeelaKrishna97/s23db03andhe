@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {
+        "chocolatetype": "Dark_chocolate",
+        "chocolate_brand": "Cadberry",
+        "cost": 50
+      },
+      {
+        "chocolatetype": "Milk_chocolate",
+        "chocolate_brand": "Hershey's",
+        "cost": 70
+      },
+      {
+        "chocolatetype": "White_chocolate",
+        "chocolate_brand": "Galaxy",
+        "cost": 100
+      },                   
+    ]
+  div(class= "container-fluid")
+    div(class = "row")
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) Type: #{item.chocolatetype}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Brand: #{item.chocolate_brand}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.cost}
+        br
+        br
+        
+  script.
+    function buy(itemNum){
+      alert(`Purchased item is ${itemNum+1}`)
+    }     
