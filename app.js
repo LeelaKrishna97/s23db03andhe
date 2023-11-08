@@ -10,7 +10,7 @@ var chocolateRouter = require('./routes/chocolate');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 var Chocolate = require("./models/chocolateSchema");
-var chocolateRouter = require('./routes/resourse');
+var chocolaterouter = require('./routes/resourse');
 
 var app = express();
 
@@ -42,7 +42,7 @@ app.use('/users', usersRouter);
 app.use('/chocolate',chocolateRouter);
 app.use('/board',boardRouter);
 app.use('/choose',chooseRouter);
-app.use('/resourse',chocolateRouter);
+app.use('/resourse',chocolaterouter);
 
 // We can seed the collection if needed on server start
 async function recreateDB() {
@@ -64,7 +64,7 @@ async function recreateDB() {
     cost:70
   });
   instance2.save().then(doc=>{
-    console.log("First object saved")
+    console.log("Second object saved")
   }).catch(err=>{
     console.error(err)
   });
@@ -74,7 +74,7 @@ async function recreateDB() {
     cost:100
   });
   instance3.save().then(doc=>{
-    console.log("First object saved")
+    console.log("third object saved")
   }).catch(err=>{
     console.error(err)
   });

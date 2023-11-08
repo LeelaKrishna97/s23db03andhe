@@ -1,9 +1,6 @@
 var express = require('express');
+const chocolate_controllers= require('../controllers/chocolate');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('chocolate', { title: 'Search Results chocolate' });
-});
-
+/* GET costumes */
+router.get('/', chocolate_controllers.chocolate_view_all_Page );
 module.exports = router;
