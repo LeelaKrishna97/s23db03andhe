@@ -11,9 +11,17 @@ exports.chocolate_list = async function(req, res) {
     }
     };
 // for a specific Costume.
-exports.chocolate_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Chocolate detail: ' + req.params.id);
-};
+exports.chocolate_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Chocolate.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
 // Handle Costume create on POST.
 exports.chocolate_create_post = async function(req, res) {
     console.log(req.body)
