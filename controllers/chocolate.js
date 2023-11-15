@@ -48,9 +48,25 @@ exports.chocolate_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Chocolate delete DELETE ' + req.params.id);
 };
 // Handle Costume update form on PUT.
-exports.chocolate_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Chocolate update PUT' + req.params.id);
-};
+exports.chocolate_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await Chocolate.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.chocolatetype)
+    toUpdate.chocolatetype = req.body.chocolatetype;
+    if(req.body.chocolatebrand) toUpdate.chocolatebrand = req.body.chocolatebrand;
+    if(req.body.cost) toUpdate.cost = req.body.cost;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
 // VIEWS
 // Handle a show all view
 exports.chocolate_view_all_Page = async function(req, res) {
