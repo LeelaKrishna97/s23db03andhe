@@ -1,25 +1,31 @@
 extends layout
 block content
     h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else    
 
-    - let chocolateid = toShow._id
-    - let chocolatetype = toShow.chocolatetype
-    - let chocolatebrand = toShow.chocolatebrand
-    - let chocolatecost = toShow.cost
-    div
-        div.row
-            div(class='chocolateAttr mr-3') Chocolate Id is: #{chocolateid}
-            br
-        div.row
-            div(class='chocolateAttr mr-3') Chocolate Type is: #{chocolatetype}
-            br
-        div.row
-            div(class='chocolateAttr mr-3') Chocolate Brand is: #{chocolatebrand}
-            br
-        div.row
-            div(class='chocolateAttr mr-3') Chocolate Cost is: #{chocolatecost} 
+        - let chocolateid = toShow._id
+        - let chocolatetype = toShow.chocolatetype
+        - let chocolatebrand = toShow.chocolatebrand
+        - let chocolatecost = toShow.cost
+        - let actionid = "/resourse/chocolate/" + chocolateid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='chocolateAttr mr-3') Chocolate Id is: 
+                div #{chocolateid}
+            div.row
+                div(class='chocolateAttr mr-3') Chocolate Type is: 
+                div #{chocolatetype}
+            div.row
+                div(class='chocolateAttr mr-3') Chocolate Brand is: 
+                div #{chocolatebrand}
+            div.row
+                div(class='chocolateAttr mr-3') Chocolate Cost is: 
+                div #{chocolatecost} 
             
-    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
         button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
     
     script.
@@ -37,7 +43,7 @@ block content
                 return resp.json(); // or resp.text() or whatever the server sends
             }).then((body) => {
                 alert("Delete succeded")
-                window.location.href='/earbuds'
+                window.location.href='/chocolate'
                 // TODO handle body
             }).catch((error) => {
                 // TODO handle error
