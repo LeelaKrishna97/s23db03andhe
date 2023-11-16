@@ -1,0 +1,50 @@
+extends layout
+block content
+    h1= title
+
+    if (toShow == null)
+        h2 No instance to update
+    
+    else
+        - let chocolateid = toShow._id
+        - let chocolatetype = toShow.chocolatetype
+        - let chocolatebrand = toShow.chocolatebrand
+        - let chocolatecost = toShow.cost
+        
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{chocolateid}
+        
+        - let actionid = "/resourse/chocolate/" + chocolateid
+        
+        form(id='ChocolateForm', action= actionid, method="PUT")
+            div.form-group
+                label.chocolateAttr(for='chocolatetype') Chocolate Type
+                input#chocolatetype(type='text', name='chocolatetype',value= chocolatetype)
+            div.form-group
+                label.chocolateAttr(for='chocolatebrand') Chocolate Brand
+                input#chocolatebrand(type='text', name='chocolatebrand',value= chocolatebrand)
+            div.form-group
+                label.chocolateAttr(for='cost') Chocolate cost
+                input#cost(type='number', name='cost',value= cost)
+                br
+                br
+            input(type="submit")
+            
+            script.
+                document.forms['ChocolateForm'].addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    // TODO do something here to show user that form is being submitted
+                    fetch(event.target.action, {
+                        method: 'PUT',
+                        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                    }).then((resp) => {
+                        return resp.json(); // or resp.text() or whatever the server sends
+                    }).then((body) => {
+                        alert("Update succeded")
+                        // TODO handle body
+                    }).catch((error) => {
+                        // TODO handle error
+                        alert("Update failed " + error )
+                    });
+                });
