@@ -44,9 +44,19 @@ exports.chocolate_create_post = async function(req, res) {
     };
     
 // Handle Costume delete form on DELETE.
-exports.chocolate_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Chocolate delete DELETE ' + req.params.id);
-};
+exports.chocolate_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Chocolate.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
+    
 // Handle Costume update form on PUT.
 exports.chocolate_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body
@@ -79,3 +89,31 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+// Handle a show one view with id specified by query
+exports.chocolate_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await Chocolate.findById( req.query.id)
+    res.render('chocolatedetail',
+    { title: 'Chocolate Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+    // Handle building the view for creating a costume.
+    // No body, no in path parameter, no query.
+    // Does not need to be async
+exports.chocolate_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('chocolatecreate', { title: 'Chocolate Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    

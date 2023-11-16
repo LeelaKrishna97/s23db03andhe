@@ -18,12 +18,3 @@ router.get('/chocolate/:id', chocolate_controller.chocolate_detail);
 // GET request for list of all Costume items.
 router.get('/chocolate', chocolate_controller.chocolate_list);
 module.exports = router;
-// API for our resources
-exports.api = function(req, res) {
-res.write('[');
-res.write('{"resource":"chocolate", ');
-res.write(' "verbs":["GET","PUT", "DELETE"] ');
-res.write('}');
-res.write(']')
-res.send();
-};

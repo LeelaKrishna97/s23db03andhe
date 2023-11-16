@@ -1,0 +1,17 @@
+
+extends layout
+block content
+    h1= title
+
+    - let chocolatetype = toShow.chocolatetype
+    - let chocolatebrand = toShow.chocolatebrand
+    - let chocolatecost = toShow.cost
+    div
+        div.row
+            div(class='costumeAttr mr-3') Chocolate Type is: #{chocolatetype}
+            br
+        div.row
+            div(class='costumeAttr mr-3') Chocolate Brand is: #{chocolatebrand}
+            br
+        div.row
+            div(class='costumeAttr mr-3') Chocolate Cost is: #{chocolatecost}        
