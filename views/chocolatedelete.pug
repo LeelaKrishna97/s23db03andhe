@@ -1,0 +1,46 @@
+extends layout
+block content
+    h1= title
+
+    - let chocolateid = toShow._id
+    - let chocolatetype = toShow.chocolatetype
+    - let chocolatebrand = toShow.chocolatebrand
+    - let chocolatecost = toShow.cost
+    div
+        div.row
+            div(class='chocolateAttr mr-3') Chocolate Id is: #{chocolateid}
+            br
+        div.row
+            div(class='chocolateAttr mr-3') Chocolate Type is: #{chocolatetype}
+            br
+        div.row
+            div(class='chocolateAttr mr-3') Chocolate Brand is: #{chocolatebrand}
+            br
+        div.row
+            div(class='chocolateAttr mr-3') Chocolate Cost is: #{chocolatecost} 
+            
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    
+    script.
+        function cancel() {
+        // Go back to the home page for the costume collection
+            window.location.href='/chocolate'
+        }
+
+    script.
+        function deleteOnid() {
+            console.log("starting delete")
+            // delete first
+            fetch(actionid, { method: 'DELETE' // Don't need a body for the delete
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/earbuds'
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        }               
