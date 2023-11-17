@@ -1,6 +1,11 @@
 extends layout
 block content
     h1= title
+    style.
+        .chocolateAttr {
+            background-color: red;
+            width: 100%;
+            }
     form(id='ChocolateForm', action="/resourse/chocolate", method="POST")
         div.form-group
             label.costumeAttr(for='chocolatetype') Chocolate Type

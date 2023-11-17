@@ -2,6 +2,11 @@
 extends layout
 block content
     h1= title
+    style.
+        .chocolateAttr {
+            background-color: red;
+            width: 100%;
+            }
 
     - let chocolateid = toShow._id
     - let chocolatetype = toShow.chocolatetype
@@ -9,13 +14,14 @@ block content
     - let chocolatecost = toShow.cost
     div
         div.row
-            div(class='chocolateAttr mr-3') Chocolate Id is: #{chocolateid}
-            br
+            div(class='chocolateAttr mr-3') Chocolate Id is: 
+            div #{chocolateid}
         div.row
-            div(class='chocolateAttr mr-3') Chocolate Type is: #{chocolatetype}
-            br
+            div(class='chocolateAttr mr-3') Chocolate Type is: 
+            div #{chocolatetype}
         div.row
-            div(class='chocolateAttr mr-3') Chocolate Brand is: #{chocolatebrand}
-            br
+            div(class='chocolateAttr mr-3') Chocolate Brand is: 
+            div #{chocolatebrand}
         div.row
-            div(class='chocolateAttr mr-3') Chocolate Cost is: #{chocolatecost}        
+            div(class='chocolateAttr mr-3') Chocolate Cost is: 
+            div #{chocolatecost}        

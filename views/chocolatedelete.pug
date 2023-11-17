@@ -1,6 +1,11 @@
 extends layout
 block content
     h1= title
+    style.
+        .chocolateAttr {
+            background-color: red;
+            width: 100%;
+            }
     if (toShow == null)
         h2 No instance to delete
     else    
