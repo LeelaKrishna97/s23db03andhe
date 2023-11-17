@@ -15,11 +15,12 @@
     "mongodb": "^6.2.0",
     "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2"
   },
   "main": "app.js",
   "author": "",
   "license": "ISC",
-  "description": "[Render Link](https://s23db03andhe.onrender.com/)",
-  "devDependencies": {}
+  "description": "[Render Link](https://s23db03andhe.onrender.com/)"
 }
