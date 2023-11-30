@@ -10,8 +10,10 @@ const chocolateSchema = mongoose.Schema({
         required:true
     },
     cost: {
-        type:String,
-        required:true
+        type:Number,
+        required:true,
+        min:0,
+        max:700
     }
 
 })

@@ -2,15 +2,30 @@ extends layout
 
 block content
   h1= title
-  -
-    let items = results
-  div(class="container-fluid")
-    div(class="row m-1")
-      each item in items
-        - let destination = `dispatch(\"/chocolate/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.chocolatetype}(#{item.chocolatebrand}) is #{item.cost}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  -let items = results
+  a(class="btn btn-outline-success" href="/chocolate/create") Create
+  .container-fluid
+      for result, index in results
+        - let destination = `dispatch("/chocolate/update?id=${result._id}")`
+        .col-m-2(onclick=`buy(${index})`)
+          div
+            div
+              div(class='chocolateAttr mr-3') Chocolate ID is: #{result._id}
+            div
+              div(class='chocolateAttr mr-3') Chocolate Type is: #{result.chocolatetype}
+            div.row
+              div(class='chocolateAttr mr-3') Chocolate Brand is: #{result.chocolatebrand}
+            div.row
+              div(class='chocolateAttr mr-3') Chocolate Cost is: #{result.cost}
+        button.btn(class="btn btn-outline-primary", onclick= destination) Update
+        a(class="btn btn-outline-danger" href=`/chocolate/delete?id=${result._id}`) Delete
+        a(class="btn btn-outline-info" href=`/chocolate/detail?id=${result._id}`) Details
+
   script.
-    function dispatch(path){
-      window.location.href=path
-    }    
+    function buy(index) {
+      alert(`You purchased item ${index + 1}`);
+    }
+    function dispatch(path) {
+      window.location.href = path;
+    }

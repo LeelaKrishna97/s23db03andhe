@@ -7,8 +7,18 @@ router.get('/', chocolate_controllers.chocolate_view_all_Page );
 router.get('/detail', chocolate_controllers.chocolate_view_one_Page);
 /* GET create costume page */
 router.get('/create', chocolate_controllers.chocolate_create_Page);
+
+// A little function to check if we have an authorized user and continue on or
+// redirect to login.
+const secured = (req, res, next) => {
+    if (req.user){
+        return next();
+    }
+    //req.session.returnTo = req.originalUrl; 
+    res.redirect("/login");
+}
 /* GET create update page */
-router.get('/update', chocolate_controllers.chocolate_update_Page);
+router.get('/update', secured,chocolate_controllers.chocolate_update_Page);
 /* GET delete costume page */
 router.get('/delete', chocolate_controllers.chocolate_delete_Page);
 
