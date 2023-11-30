@@ -9,18 +9,18 @@ block content
       for result, index in results
         - let destination = `dispatch("/chocolate/update?id=${result._id}")`
         .col-m-2(onclick=`buy(${index})`)
-          div
-            div
-              div(class='chocolateAttr mr-3') Chocolate ID is: #{result._id}
-            div
-              div(class='chocolateAttr mr-3') Chocolate Type is: #{result.chocolatetype}
+          div(style="width: 20%;margin-left: 1%;")
             div.row
-              div(class='chocolateAttr mr-3') Chocolate Brand is: #{result.chocolatebrand}
+              div(style="background: rgba(0, 128, 0, 0.3);") Chocolate ID is: #{result._id}
             div.row
-              div(class='chocolateAttr mr-3') Chocolate Cost is: #{result.cost}
-        button.btn(class="btn btn-outline-primary", onclick= destination) Update
+              div(style="background: rgba(0, 128, 0, 0.3);") Chocolate Type is: #{result.chocolatetype}
+            div.row
+              div(style="background: rgba(0, 128, 0, 0.3);") Chocolate Brand is: #{result.chocolatebrand}
+            div.row
+              div(style="background: rgba(0, 128, 0, 0.3);") Chocolate Cost is: #{result.cost}
+        button.btn(class="btn btn-primary", onclick= destination) Update
         a(class="btn btn-outline-danger" href=`/chocolate/delete?id=${result._id}`) Delete
-        a(class="btn btn-outline-info" href=`/chocolate/detail?id=${result._id}`) Details
+        a(class="btn btn-info" href=`/chocolate/detail?id=${result._id}`) Details
 
   script.
     function buy(index) {

@@ -7,7 +7,8 @@ const chocolateSchema = mongoose.Schema({
     },
     chocolatebrand: {
         type: String,
-        required:true
+        required:true,
+        maxLength: 10
     },
     cost: {
         type:Number,
